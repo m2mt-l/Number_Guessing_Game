@@ -1,8 +1,17 @@
-<h2>Player one enter a value between 1 and 100 to be guessed</h2>
+<div *ngIf="isPlayerOne;then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <h2>{{sentencePlayerOne}}</h2>
+</ng-template>
+<ng-template #elseBlock>
+    <h2>{{sentencePlayerTwo}}</h2>
+</ng-template>
 <div class="container">
     <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
         <mat-label>Enter some input</mat-label>
-        <input matInput type="number" #input maxlength="3" placeholder="Ex. 100">
+        <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" required>
         <mat-hint align="end"></mat-hint>
     </mat-form-field>
+    <div class="enter-button">
+        <button mat-raised-button color="primary" (click)="onSelect(input.value)">Enter</button>
+    </div>
 </div>

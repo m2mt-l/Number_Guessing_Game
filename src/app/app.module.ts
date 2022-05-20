@@ -7,20 +7,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    GameComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, GameComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
