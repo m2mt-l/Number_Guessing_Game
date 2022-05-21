@@ -15,15 +15,18 @@ export class GameComponent implements OnInit {
     isPlayerOne: boolean = true;
     counter: number = 1;
     rateControl: FormControl = new FormControl('', [Validators.min(1), Validators.max(100)]);
-
+    
     ngOnInit(): void {}
 
     onSelect(n: string): void {
         if (this.isPlayerOne) {
             this.isPlayerOne = false;
             this.playerService.add(1, Number(n));
+            this.rateControl.reset();
+            
         } else {
             this.playerService.add(2, Number(n));
+            this.rateControl.reset();
         }
     }
 
