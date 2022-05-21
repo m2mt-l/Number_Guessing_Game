@@ -19,12 +19,11 @@ export class GameComponent implements OnInit {
     ngOnInit(): void {}
 
     onSelect(n: string): void {
-        if(this.isPlayerOne) {
+        if (this.isPlayerOne) {
             this.isPlayerOne = false;
-            this.playerService.add(1, Number(n))
-        }
-        else {
-            this.playerService.add(2, Number(n))
+            this.playerService.add(1, Number(n));
+        } else {
+            this.playerService.add(2, Number(n));
         }
     }
 
