@@ -1,4 +1,9 @@
-<div *ngIf="playerService.players.length" class="guess-container">
+<div *ngIf="playerService.players.length && playerService.players.length==1" class="guess-container">
     <h4>guess: ?</h4>
     <h4>Off By: ?</h4>
+</div>
+
+<div *ngIf="playerService.players.length==2" class="guess-container">
+    <h4>guess: {{playerTwoNumber}}</h4>
+    <h4>Off By: {{distanceHashmap[checkGuessNumber()]}}</h4>
 </div>
