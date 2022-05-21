@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { Player } from '../player';
+import { PlayerService } from '../player.service';
 @Component({
   selector: 'app-guess',
   templateUrl: './guess.component.html',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuessComponent implements OnInit {
 
-  constructor() { }
+  constructor(public playerService: PlayerService) { }
 
   ngOnInit(): void {
   }
-
+  
 }
