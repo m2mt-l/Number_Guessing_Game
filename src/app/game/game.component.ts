@@ -15,6 +15,8 @@ export class GameComponent implements OnInit {
     isPlayerOne: boolean = true;
     counter: number = 1;
     rateControl: FormControl = new FormControl('', [Validators.min(1), Validators.max(100)]);
+    playerOneNumber?: number;
+    playerTwoNumber?: number;
 
     ngOnInit(): void {}
 
@@ -22,9 +24,16 @@ export class GameComponent implements OnInit {
         if (this.isPlayerOne) {
             this.isPlayerOne = false;
             this.playerService.add(1, Number(n));
-        } else {
+            this.playerOneNumber = this.playerService.getPlayerOneNumber();
+            this.rateControl.reset();
+            
+        } else if(this.playerService.players.length < 2){
             this.playerService.add(2, Number(n));
+            this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
+            this.counter++;
+            this.rateControl.reset();
         }
+        console.log(this.playerService.players)
     }
 
     isValidNumber(n: string): boolean {

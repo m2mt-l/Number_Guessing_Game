@@ -6,9 +6,22 @@ import { Player } from './player';
 export class PlayerService {
     players: Player[] = [];
 
-    add(id: number, n: number) {
+    add(id: number, n: number): void {
         let player: Player = { id: id, guessingNumber: n };
         this.players.push(player);
     }
+
+    getPlayerOneNumber(): number {
+        return this.players[0].guessingNumber;
+    }
+
+    getPlayerTwoNumber(): number {
+        return this.players[1].guessingNumber;
+    }
+
+    clear(): void {
+        this.players = []
+    }
+
     constructor() {}
 }
