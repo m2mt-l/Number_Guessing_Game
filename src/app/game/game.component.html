@@ -42,8 +42,10 @@
             <div class="sentence">
                 <h2>Player 2 run out of guesses! sum of deviation: {{guessService.deviation}}</h2>
             </div>
-            <div class="reset-button">
-                <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
+            <div class="reset-box">
+                <div class="reset-button">
+                    <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
+                </div>
             </div>
         </ng-template>
         <ng-template #continue>
