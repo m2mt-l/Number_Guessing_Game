@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Player } from '../player';
 import { PlayerService } from '../player.service';
+import { GuessService } from '../guess.service';
 @Component({
     selector: 'app-game',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.css'],
 })
 export class GameComponent implements OnInit {
-    constructor(private playerService: PlayerService) {}
+    constructor(private playerService: PlayerService, private guessService: GuessService) {}
 
     sentencePlayerOne: string = 'Player one enter a value between 1 and 100 to be guessed';
     sentencePlayerTwo: string = 'Player two enter a value between 1 and 100 to be guessed';
@@ -32,12 +33,14 @@ export class GameComponent implements OnInit {
             this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
             this.distance = this.getDistance();
             this.counter++;
+            this.setGuessService(Number(n), this.counter-1, this.distance);
             this.rateControl.reset();
         } else if (this.playerService.players.length == 2 && this.getDistance() != 0) {
             this.playerService.setPlayerTwoNumber(Number(n));
             this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
             this.distance = this.getDistance();
             this.counter++;
+            this.setGuessService(Number(n), this.counter-1, this.distance);
             this.rateControl.reset();
         }
         console.log(this.playerService.players);
@@ -57,10 +60,18 @@ export class GameComponent implements OnInit {
 
     resetGame(): void {
         this.playerService.clear();
+        this.guessService.clear();
+        this.guessService.initialGuessServices();
         this.isPlayerOne = true;
         this.counter = 0;
         this.playerOneNumber = -1;
         this.playerTwoNumber = -1;
         this.distance = -1;
+    }
+
+    setGuessService(guessNumber: number, counter: number, distance: number): void{
+        this.guessService.setGuessNumber(guessNumber, counter);
+        this.guessService.setDistanceRange(distance, counter);
+        this.guessService.addDeviation(distance);
     }
 }
