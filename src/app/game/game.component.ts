@@ -60,6 +60,8 @@ export class GameComponent implements OnInit {
 
     resetGame(): void {
         this.playerService.clear();
+        this.guessService.clear();
+        this.guessService.initialGuessServices();
         this.isPlayerOne = true;
         this.counter = 0;
         this.playerOneNumber = -1;
@@ -68,7 +70,8 @@ export class GameComponent implements OnInit {
     }
 
     setGuessService(guessNumber: number, counter: number, distance: number): void{
-        this.guessService.setGuessNumber(guessNumber, distance, counter);
+        this.guessService.setGuessNumber(guessNumber, counter);
         this.guessService.setDistanceRange(distance, counter);
+        this.guessService.addDeviation(distance);
     }
 }

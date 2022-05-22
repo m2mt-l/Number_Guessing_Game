@@ -6,6 +6,8 @@ import { Guess } from './guess';
 })
 export class GuessService {
     guesses: Guess[] = [];
+    guessLimit: number = 5;
+    deviation: number = 0;
     distanceHashmap: { [key: string]: string } = {
         perfect: '0',
         fine: '1-2',
@@ -19,19 +21,19 @@ export class GuessService {
     constructor() {}
 
     initialGuessServices(): void {
-        const guessLimit: number = 5;
+
         const defaultGuess: Guess = {
             guessNumber: -1,
             imageUrl: '',
             distanceRange: '',
         };
-        for (let i: number = 1; i <= guessLimit; i++) {
+        for (let i: number = 1; i <= this.guessLimit; i++) {
             let defaultGuessCopy = Object.assign({},defaultGuess)
             this.guesses.push(defaultGuessCopy);
         }
     }
 
-    setGuessNumber(guessNumber: number, distance: number, counter: number): void{
+    setGuessNumber(guessNumber: number, counter: number): void{
         this.guesses[counter].guessNumber = guessNumber;
     }
 
@@ -46,6 +48,14 @@ export class GuessService {
 
     getDistanceRange(counter: number): string{
       return this.guesses[counter].distanceRange;
+    }
+
+    addDeviation(distance: number): void{
+        this.deviation+= distance;
+    }
+
+    clear(): void {
+        this.guesses = [];
     }
 
     checkGuessNumber(distance: number): string {
