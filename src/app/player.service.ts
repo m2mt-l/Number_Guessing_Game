@@ -24,7 +24,7 @@ export class PlayerService {
     }
 
     clear(): void {
-        this.players = []
+        this.players = [];
     }
 
     constructor() {}
