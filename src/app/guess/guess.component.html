@@ -1,4 +1,4 @@
-<div *ngIf="playerService.players.length && playerService.players.length==1" class="guess-container">
+<!-- <div *ngIf="playerService.players.length && playerService.players.length==1" class="guess-container">
     <h4>guess: ?</h4>
     <h4>Off By: ?</h4>
 </div>
@@ -7,7 +7,7 @@
     <h4>guess: {{playerTwoNumber}}</h4>
     <h4>Off By: {{distanceHashmap[checkGuessNumber()]}}</h4>
 </div>
-
+ -->
 <div *ngFor="let guess of guessService.guesses" class="guess-container">
     <h4>guess:  {{guess.guessNumber}}</h4>
     <h4>Off By: {{guess.distanceRange}}</h4>

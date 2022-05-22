@@ -6,6 +6,15 @@ import { Guess } from './guess';
 })
 export class GuessService {
     guesses: Guess[] = [];
+    distanceHashmap: { [key: string]: string } = {
+        perfect: '0',
+        fine: '1-2',
+        sad: '3-4',
+        upset: '5-9',
+        mad: '10-24',
+        angry: '25-49',
+        furious: '50+',
+    };
 
     constructor() {}
 
@@ -22,12 +31,13 @@ export class GuessService {
         }
     }
 
-    setGuessNumber(guessNumber: number, counter: number): void{
+    setGuessNumber(guessNumber: number, distance: number, counter: number): void{
         this.guesses[counter].guessNumber = guessNumber;
     }
 
-    setDistanceRange(distanceRange: string, counter: number): void{
-      this.guesses[counter].distanceRange = distanceRange;      
+    setDistanceRange(distance: number, counter: number): void{
+        const distanceRange: string = this.distanceHashmap[this.checkGuessNumber(distance)];
+        this.guesses[counter].distanceRange = distanceRange;      
     }
   
     getGuessNumber(counter: number): number{
@@ -38,4 +48,21 @@ export class GuessService {
       return this.guesses[counter].distanceRange;
     }
 
+    checkGuessNumber(distance: number): string {
+        if (distance == 0) {
+            return 'perfect';
+        } else if (distance >= 1 && distance <= 2) {
+            return 'fine';
+        } else if (distance >= 3 && distance <= 4) {
+            return 'sad';
+        } else if (distance >= 5 && distance <= 9) {
+            return 'upset';
+        } else if (distance >= 10 && distance <= 24) {
+            return 'mad';
+        } else if (distance >= 25 && distance <= 49) {
+            return 'angry';
+        } else {
+            return 'furious';
+        }
+    }
 }
