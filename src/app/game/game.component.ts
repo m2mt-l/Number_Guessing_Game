@@ -9,7 +9,7 @@ import { GuessService } from '../guess.service';
     styleUrls: ['./game.component.css'],
 })
 export class GameComponent implements OnInit {
-    constructor(private playerService: PlayerService, private guessService: GuessService) {}
+    constructor(private playerService: PlayerService, public guessService: GuessService) {}
 
     sentencePlayerOne: string = 'Player one enter a value between 1 and 100 to be guessed';
     sentencePlayerTwo: string = 'Player two enter a value between 1 and 100 to be guessed';
