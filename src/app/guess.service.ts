@@ -25,7 +25,7 @@ export class GuessService {
         const defaultGuess: Guess = {
             guessNumber: -1,
             imageUrl: '',
-            distanceRange: '',
+            distanceRange: '?',
         };
         for (let i: number = 1; i <= this.guessLimit; i++) {
             let defaultGuessCopy = Object.assign({},defaultGuess)
