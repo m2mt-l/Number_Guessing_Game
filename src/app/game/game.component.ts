@@ -13,7 +13,7 @@ export class GameComponent implements OnInit {
     sentencePlayerOne: string = 'Player one enter a value between 1 and 100 to be guessed';
     sentencePlayerTwo: string = 'Player two enter a value between 1 and 100 to be guessed';
     isPlayerOne: boolean = true;
-    counter: number = 1;
+    counter: number = 0;
     rateControl: FormControl = new FormControl('', [Validators.min(1), Validators.max(100)]);
     playerOneNumber?: number;
     playerTwoNumber?: number;
@@ -53,5 +53,14 @@ export class GameComponent implements OnInit {
     isValidNumber(n: string): boolean {
         let changedN = Number(n);
         return changedN > 0 && changedN <= 100;
+    }
+
+    resetGame(): void {
+        this.playerService.clear();
+        this.isPlayerOne = true;
+        this.counter = 0;
+        this.playerOneNumber = -1;
+        this.playerTwoNumber = -1;
+        this.distance = -1;
     }
 }
