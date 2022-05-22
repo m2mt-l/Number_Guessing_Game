@@ -19,6 +19,12 @@
 </ng-template>
 
 <ng-template #elseBlock>
+    <div *ngIf="distance == 0; then gameFinish else playerTwoTurn"></div>
+    <ng-template #gameFinish>
+        <h2>It took player two {{counter}} guesses. Play again?</h2>
+        <button mat-raised-button color="primary">Reset Game</button>
+    </ng-template>
+    <ng-template #playerTwoTurn>
     <h2>{{sentencePlayerTwo}}</h2>
     <div class="container-playerTwo">
         <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
@@ -34,6 +40,8 @@
             <ng-template #elseButton>
                 <button mat-raised-button color="primary">Enter</button>
             </ng-template>
-    </div>    
+    </div>
+    </ng-template>    
 </ng-template>
+
 <app-guess [playerOneNumber]="playerOneNumber" [playerTwoNumber]="playerTwoNumber" [distance]="distance" [counter]="counter"></app-guess>
