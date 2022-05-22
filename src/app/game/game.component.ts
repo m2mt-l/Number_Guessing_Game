@@ -17,6 +17,7 @@ export class GameComponent implements OnInit {
     rateControl: FormControl = new FormControl('', [Validators.min(1), Validators.max(100)]);
     playerOneNumber?: number;
     playerTwoNumber?: number;
+    distance?: number;
 
     ngOnInit(): void {}
 
@@ -26,14 +27,27 @@ export class GameComponent implements OnInit {
             this.playerService.add(1, Number(n));
             this.playerOneNumber = this.playerService.getPlayerOneNumber();
             this.rateControl.reset();
-            
-        } else if(this.playerService.players.length < 2){
+        } else if (this.playerService.players.length < 2) {
             this.playerService.add(2, Number(n));
             this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
+            this.distance = this.getDistance();
+            this.counter++;
+            this.rateControl.reset();
+        } else if (this.playerService.players.length == 2 && this.getDistance() != 0) {
+            this.playerService.setPlayerTwoNumber(Number(n));
+            this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
+            this.distance = this.getDistance();
             this.counter++;
             this.rateControl.reset();
         }
-        console.log(this.playerService.players)
+        console.log(this.playerService.players);
+        console.log(this.counter);
+    }
+
+    getDistance(): number {
+        return this.playerOneNumber != undefined && this.playerTwoNumber != undefined
+            ? Math.abs(this.playerOneNumber - this.playerTwoNumber)
+            : -1;
     }
 
     isValidNumber(n: string): boolean {

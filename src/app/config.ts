@@ -7,4 +7,3 @@ export const defaultValue: Config = {
     minimumNumber: 1,
     maximumNumber: 100,
 };
-
