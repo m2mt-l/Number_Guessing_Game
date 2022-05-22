@@ -11,6 +11,8 @@ export class GuessComponent implements OnInit {
     //offBy = Guess.distance[this.checkGuessNumber()];
     @Input() playerOneNumber?: number;
     @Input() playerTwoNumber?: number;
+    @Input() distance?: number;
+    @Input() counter?: number;
 
     distanceHashmap: { [key: string]: string } = {
         perfect: '0',
@@ -24,14 +26,8 @@ export class GuessComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    getDistance(): number {
-        return this.playerOneNumber != undefined && this.playerTwoNumber != undefined
-            ? Math.abs(this.playerOneNumber - this.playerTwoNumber)
-            : 0;
-    }
-
     checkGuessNumber(): string {
-        let distance = this.getDistance();
+        const distance: number = this.distance != undefined ? this.distance : -1;
         if (distance == 0) {
             return 'perfect';
         } else if (distance >= 1 && distance <= 2) {
