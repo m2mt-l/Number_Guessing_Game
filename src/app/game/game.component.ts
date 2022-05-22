@@ -72,6 +72,7 @@ export class GameComponent implements OnInit {
     setGuessService(guessNumber: number, counter: number, distance: number): void{
         this.guessService.setGuessNumber(guessNumber, counter);
         this.guessService.setDistanceRange(distance, counter);
+        this.guessService.setImgUrl(distance, counter);
         this.guessService.addDeviation(distance);
     }
 }

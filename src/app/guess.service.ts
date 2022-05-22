@@ -18,13 +18,24 @@ export class GuessService {
         furious: '50+',
     };
 
+    imgHashmap: { [key: string]: string } = {
+        first: './assets/first.jpg',
+        perfect: './assets/perfect.jpg',
+        fine: './assets/fine.jpg',
+        sad: './assets/sad.jpg',
+        upset: './assets/upset.jpg',
+        mad: './assets/mad.jpg',
+        angry: './assets/angry.jpg',
+        furious: './assets/furious.jpg',
+    }
+
     constructor() {}
 
     initialGuessServices(): void {
 
         const defaultGuess: Guess = {
             guessNumber: -1,
-            imageUrl: '',
+            imageUrl: this.imgHashmap["first"],
             distanceRange: '?',
         };
         for (let i: number = 1; i <= this.guessLimit; i++) {
@@ -40,6 +51,11 @@ export class GuessService {
     setDistanceRange(distance: number, counter: number): void{
         const distanceRange: string = this.distanceHashmap[this.checkGuessNumber(distance)];
         this.guesses[counter].distanceRange = distanceRange;      
+    }
+
+    setImgUrl(distance: number, counter: number): void{
+        const imgUrl: string = this.imgHashmap[this.checkGuessNumber(distance)];
+        this.guesses[counter].imageUrl = imgUrl;
     }
   
     getGuessNumber(counter: number): number{
