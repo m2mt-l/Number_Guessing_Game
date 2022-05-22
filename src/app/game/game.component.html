@@ -1,51 +1,73 @@
 <div *ngIf="isPlayerOne;then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
-    <h2>{{sentencePlayerOne}}</h2>
+    <div class="sentence">
+        <h2>{{sentencePlayerOne}}</h2>
+    </div>
     <div class="container-playerOne">
+        <div class="form">
         <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
             <mat-label>Enter some input</mat-label>
             <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" required>
             <mat-hint align="end"></mat-hint>
             <mat-error *ngIf="rateControl.invalid">Between 1 and 100</mat-error>
         </mat-form-field>
-        <div class="enter-button" *ngIf="isValidNumber(input.value);then thenButton else elseButton"></div>
-            <ng-template #thenButton>
-                <button mat-raised-button color="primary" (click)="onSelect(input.value)">Enter</button>
-            </ng-template>
-            <ng-template #elseButton>
-                <button mat-raised-button color="primary">Enter</button>
-            </ng-template>
+        </div>
+        <div class="enter-button">
+            <div *ngIf="isValidNumber(input.value);then thenButton else elseButton"></div>
+                <ng-template #thenButton>
+                    <button mat-raised-button color="primary" (click)="onSelect(input.value)">Enter</button>
+                </ng-template>
+                <ng-template #elseButton>
+                    <button mat-raised-button color="primary">Enter</button>
+                </ng-template>
+        </div>
     </div>    
 </ng-template>
 
 <ng-template #elseBlock>
     <div *ngIf="distance===0; then gameFinish else playerTwoTurn"></div>
     <ng-template #gameFinish>
-        <h2>Player 2 guessed correctly in {{counter}} attempts! sum of deviation: {{guessService.deviation}}</h2>
-        <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
+        <div class="sentence">
+            <h2>Player 2 guessed correctly in {{counter}} attempts! sum of deviation: {{guessService.deviation}}</h2>
+        </div>
+        <div class="reset-box">
+            <div class="reset-button">
+                <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
+            </div>
+        </div>
     </ng-template>
     <ng-template #playerTwoTurn>
         <div *ngIf="counter===5; then gameOver else continue"></div>
         <ng-template #gameOver>
-            <h2>Player 2 run out of guesses! sum of deviation: {{guessService.deviation}}</h2>
-            <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
+            <div class="sentence">
+                <h2>Player 2 run out of guesses! sum of deviation: {{guessService.deviation}}</h2>
+            </div>
+            <div class="reset-button">
+                <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
+            </div>
         </ng-template>
         <ng-template #continue>
-            <h2>{{sentencePlayerTwo}}</h2>
+            <div class="sentence">
+                <h2>{{sentencePlayerTwo}}</h2>
+            </div>
             <div class="container-playerTwo">
-                <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
-                    <mat-label>Enter some input</mat-label>
-                    <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" required>
-                    <mat-hint align="end"></mat-hint>
-                    <mat-error *ngIf="rateControl.invalid">Between 1 and 100</mat-error>
-                </mat-form-field>
-                <div class="enter-button" *ngIf="isValidNumber(input.value);then thenButton else elseButton"></div>
-                    <ng-template #thenButton>
-                        <button mat-raised-button color="primary" (click)="onSelect(input.value)">Enter</button>
-                    </ng-template>
-                    <ng-template #elseButton>
-                        <button mat-raised-button color="primary">Enter</button>
-                    </ng-template>
+                <div class="form">
+                    <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
+                        <mat-label>Enter some input</mat-label>
+                        <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" required>
+                        <mat-hint align="end"></mat-hint>
+                        <mat-error *ngIf="rateControl.invalid">Between 1 and 100</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="enter-button" >
+                    <div *ngIf="isValidNumber(input.value);then thenButton else elseButton"></div>
+                        <ng-template #thenButton>
+                            <button mat-raised-button color="primary" (click)="onSelect(input.value)">Enter</button>
+                        </ng-template>
+                        <ng-template #elseButton>
+                            <button mat-raised-button color="primary">Enter</button>
+                        </ng-template>
+                </div>
             </div>
         </ng-template>
     </ng-template>    
