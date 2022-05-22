@@ -8,8 +8,10 @@
     <h4>Off By: {{distanceHashmap[checkGuessNumber()]}}</h4>
 </div>
  -->
-<div *ngFor="let guess of guessService.guesses" class="guess-container">
-    <h4>guess:  {{guess.guessNumber}}</h4>
-    <img class="picture" src="{{guess.imageUrl}}">
-    <h4>Off By: {{guess.distanceRange}}</h4>
+<div class="guess-box">
+    <div *ngFor="let guess of guessService.guesses" class="guess-container">
+        <h3>guess:  {{getGuessNumber(guess)}}</h3>
+        <img class="picture" src="{{guess.imageUrl}}">
+        <h3>Off By: {{guess.distanceRange}}</h3>
+    </div>
 </div>
