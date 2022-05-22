@@ -10,5 +10,6 @@
  -->
 <div *ngFor="let guess of guessService.guesses" class="guess-container">
     <h4>guess:  {{guess.guessNumber}}</h4>
+    <img class="picture" src="{{guess.imageUrl}}">
     <h4>Off By: {{guess.distanceRange}}</h4>
 </div>

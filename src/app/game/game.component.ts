@@ -33,14 +33,14 @@ export class GameComponent implements OnInit {
             this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
             this.distance = this.getDistance();
             this.counter++;
-            this.setGuessService(Number(n), this.counter-1, this.distance);
+            this.setGuessService(Number(n), this.counter - 1, this.distance);
             this.rateControl.reset();
         } else if (this.playerService.players.length == 2 && this.getDistance() != 0) {
             this.playerService.setPlayerTwoNumber(Number(n));
             this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
             this.distance = this.getDistance();
             this.counter++;
-            this.setGuessService(Number(n), this.counter-1, this.distance);
+            this.setGuessService(Number(n), this.counter - 1, this.distance);
             this.rateControl.reset();
         }
         console.log(this.playerService.players);
@@ -69,9 +69,10 @@ export class GameComponent implements OnInit {
         this.distance = -1;
     }
 
-    setGuessService(guessNumber: number, counter: number, distance: number): void{
+    setGuessService(guessNumber: number, counter: number, distance: number): void {
         this.guessService.setGuessNumber(guessNumber, counter);
         this.guessService.setDistanceRange(distance, counter);
+        this.guessService.setImgUrl(distance, counter);
         this.guessService.addDeviation(distance);
     }
 }
