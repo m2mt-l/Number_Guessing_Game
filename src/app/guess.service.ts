@@ -5,7 +5,7 @@ import { Guess } from './guess';
     providedIn: 'root',
 })
 export class GuessService {
-    guessServices: Guess[] = [];
+    guesses: Guess[] = [];
 
     constructor() {}
 
@@ -17,7 +17,25 @@ export class GuessService {
             distanceRange: '',
         };
         for (let i: number = 1; i <= guessLimit; i++) {
-            this.guessServices.push(defaultGuess);
+            let defaultGuessCopy = Object.assign({},defaultGuess)
+            this.guesses.push(defaultGuessCopy);
         }
     }
+
+    setGuessNumber(guessNumber: number, counter: number): void{
+        this.guesses[counter].guessNumber = guessNumber;
+    }
+
+    setDistanceRange(distanceRange: string, counter: number): void{
+      this.guesses[counter].distanceRange = distanceRange;      
+    }
+  
+    getGuessNumber(counter: number): number{
+        return this.guesses[counter].guessNumber;
+    }
+
+    getDistanceRange(counter: number): string{
+      return this.guesses[counter].distanceRange;
+    }
+
 }

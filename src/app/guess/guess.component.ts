@@ -27,7 +27,6 @@ export class GuessComponent implements OnInit {
 
     ngOnInit(): void {
         this.initialGuess();
-        console.log(this.guessService.guessServices);
     }
 
     checkGuessNumber(): string {
