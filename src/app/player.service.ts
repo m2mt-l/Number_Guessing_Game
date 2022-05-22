@@ -19,6 +19,10 @@ export class PlayerService {
         return this.players[1].guessingNumber;
     }
 
+    setPlayerTwoNumber(n: number): void {
+        this.players[1].guessingNumber = n;
+    }
+
     clear(): void {
         this.players = []
     }

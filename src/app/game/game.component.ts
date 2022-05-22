@@ -32,6 +32,11 @@ export class GameComponent implements OnInit {
             this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
             this.counter++;
             this.rateControl.reset();
+        } else if(this.playerService.players.length == 2){
+            this.playerService.setPlayerTwoNumber(Number(n));
+            this.playerTwoNumber = this.playerService.getPlayerTwoNumber();
+            this.counter++;
+            this.rateControl.reset();
         }
         console.log(this.playerService.players)
     }
