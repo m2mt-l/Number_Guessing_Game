@@ -5,22 +5,23 @@ import { Player } from './player';
 })
 export class PlayerService {
     players: Player[] = [];
-
+    isPlayerOne: boolean = true;
+    
     add(id: number, n: number): void {
-        let player: Player = { id: id, guessingNumber: n };
+        let player: Player = { id: id, guessNumber: n };
         this.players.push(player);
     }
 
     getPlayerOneNumber(): number {
-        return this.players[0].guessingNumber;
+        return this.players[0].guessNumber;
     }
 
     getPlayerTwoNumber(): number {
-        return this.players[1].guessingNumber;
+        return this.players[1].guessNumber;
     }
 
     setPlayerTwoNumber(n: number): void {
-        this.players[1].guessingNumber = n;
+        this.players[1].guessNumber = n;
     }
 
     clear(): void {

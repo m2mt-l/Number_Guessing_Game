@@ -1,6 +1,6 @@
 <div class="guess-box">
     <div *ngFor="let guess of guessService.guesses" class="guess-container">
-        <h3>guess:  {{getGuessNumber(guess)}}</h3>
+        <h3>Guess:  {{getGuessNumber(guess)}}</h3>
         <img class="picture" src="{{guess.imageUrl}}">
         <h3>Off By: {{guess.distanceRange}}</h3>
     </div>
