@@ -5,7 +5,7 @@
         <div class="form">
         <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
             <mat-label>Enter some input</mat-label>
-            <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" required>
+            <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" (keyup.enter)="onSelect(input.value)" required>
             <mat-hint align="end"></mat-hint>
             <mat-error *ngIf="rateControl.invalid">Between 1 and 100</mat-error>
         </mat-form-field>
@@ -54,7 +54,7 @@
                 <div class="form">
                     <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
                         <mat-label>Enter some input</mat-label>
-                        <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" required>
+                        <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" (keyup.enter)="onSelect(input.value)" required>
                         <mat-hint align="end"></mat-hint>
                         <mat-error *ngIf="rateControl.invalid">Between 1 and 100</mat-error>
                     </mat-form-field>
