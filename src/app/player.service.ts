@@ -40,6 +40,16 @@ export class PlayerService {
         this.isPlayerOne = false;
     }
 
+    getDistance(): number {
+        const playerOneNumber: number = this.getPlayerOneNumber();
+        const playerTwoNumber: number = this.getPlayerTwoNumber()
+        return Math.abs(playerOneNumber - playerTwoNumber)
+    }
+
+    isPerfect(): boolean {
+        return this.getDistance() === 0;
+    }
+
     clear(): void {
         this.players = [];
     }

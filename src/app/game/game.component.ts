@@ -26,13 +26,13 @@ export class GameComponent implements OnInit {
             this.rateControl.reset();
         } else if (this.playerService.players.length < 2) {
             this.playerService.add(2, Number(n));
-            this.distance = this.getDistance();
+            this.distance = this.playerService.getDistance();
             this.counter++;
             this.setGuessService(Number(n), this.counter - 1, this.distance);
             this.rateControl.reset();
-        } else if (this.playerService.players.length == 2 && this.getDistance() != 0) {
+        } else if (this.playerService.players.length == 2 && this.playerService.getDistance() != 0) {
             this.playerService.setPlayerTwoNumber(Number(n));
-            this.distance = this.getDistance();
+            this.distance = this.playerService.getDistance();
             this.counter++;
             this.setGuessService(Number(n), this.counter - 1, this.distance);
             this.rateControl.reset();
@@ -42,12 +42,6 @@ export class GameComponent implements OnInit {
         }
     }
 
-    getDistance(): number {
-        const playerOneNumber: number = this.playerService.getPlayerOneNumber();
-        const playerTwoNumber: number = this.playerService.getPlayerTwoNumber()
-        return Math.abs(playerOneNumber - playerTwoNumber)
-    }
-
     isValidNumber(n: string): boolean {
         let changedN = Number(n);
         return changedN > 0 && changedN <= 100;
@@ -55,6 +49,10 @@ export class GameComponent implements OnInit {
 
     isPlayerOne(): boolean {
         return this.playerService.isPlayerOne;
+    }
+
+    isPerfect(): boolean {
+        return this.playerService.isPerfect();
     }
 
     resetGame(): void {
