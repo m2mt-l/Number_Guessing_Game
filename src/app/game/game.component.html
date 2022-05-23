@@ -1,8 +1,6 @@
 <div *ngIf="isPlayerOne();then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
-    <div class="sentence">
-        <h2>{{getSentencePlayerOne()}}</h2>
-    </div>
+    <h2 class="sentence">{{getSentencePlayerOne()}}</h2>
     <div class="container-playerOne">
         <div class="form">
         <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
@@ -27,9 +25,7 @@
 <ng-template #elseBlock>
     <div *ngIf="isPerfect(); then gameFinish else playerTwoTurn"></div>
     <ng-template #gameFinish>
-        <div class="sentence">
-            <h2>Player 2 guessed correctly in {{getCounter()}} attempts! sum of deviation: {{getDeviation()}}</h2>
-        </div>
+        <h2 class="sentence">Player 2 guessed correctly in {{getCounter()}} attempts! sum of deviation: {{getDeviation()}}</h2>
         <div class="reset-box">
             <div class="reset-button">
                 <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
@@ -39,9 +35,7 @@
     <ng-template #playerTwoTurn>
         <div *ngIf="isGameOver(); then gameOver else continue"></div>
         <ng-template #gameOver>
-            <div class="sentence">
-                <h2>Player 2 run out of guesses! sum of deviation: {{getDeviation()}}</h2>
-            </div>
+            <h2 class="sentence">Player 2 run out of guesses! sum of deviation: {{getDeviation()}}</h2>
             <div class="reset-box">
                 <div class="reset-button">
                     <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
@@ -51,14 +45,10 @@
         <ng-template #continue>
             <div *ngIf="isPlayerTwoFirstGuess();then playerTwoFirst else incorrect"></div>
                 <ng-template #playerTwoFirst>
-                    <div class="sentence">
-                        <h2>{{getSentencePlayerTwo()}}</h2>
-                    </div>
+                    <h2 class="sentence">{{getSentencePlayerTwo()}}</h2>
                 </ng-template>
                 <ng-template #incorrect>
-                    <div class="sentence">
-                        <h2>Incorrect. Player 2 have {{leftGuesses()}} left. Enter a value between 1 - 100.</h2>
-                    </div>        
+                    <h2 class="sentence">Incorrect. Player 2 have {{leftGuesses()}} left. Enter a value between 1 - 100.</h2>
                 </ng-template>
             <div class="container-playerTwo">
                 <div class="form">
