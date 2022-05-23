@@ -8,13 +8,9 @@ import { GuessService } from '../guess.service';
     styleUrls: ['./game.component.css'],
 })
 export class GameComponent implements OnInit {
-    constructor(private playerService: PlayerService, public guessService: GuessService) {}
+    constructor(private playerService: PlayerService, private guessService: GuessService) {}
 
-    sentencePlayerOne: string = 'Player 1: enter a value between 1 and 100 to be guessed';
-    sentencePlayerTwo: string = 'Player 2: enter a value between 1 and 100 to be guessed';
-    counter: number = 0;
     rateControl: FormControl = new FormControl('', [Validators.min(1), Validators.max(100)]);
-    distance?: number;
 
     ngOnInit(): void {}
 
@@ -26,15 +22,15 @@ export class GameComponent implements OnInit {
             this.rateControl.reset();
         } else if (this.playerService.players.length < 2) {
             this.playerService.add(2, Number(n));
-            this.distance = this.playerService.getDistance();
-            this.counter++;
-            this.setGuessService(Number(n), this.counter - 1, this.distance);
+            this.playerService.setDistance();
+            this.playerService.addCounter();
+            this.setGuessService(Number(n), this.getCounter() - 1, this.getDistance());
             this.rateControl.reset();
-        } else if (this.playerService.players.length == 2 && this.playerService.getDistance() != 0) {
+        } else if (this.playerService.players.length == 2 && this.getDistance() != 0) {
             this.playerService.setPlayerTwoNumber(Number(n));
-            this.distance = this.playerService.getDistance();
-            this.counter++;
-            this.setGuessService(Number(n), this.counter - 1, this.distance);
+            this.playerService.setDistance();
+            this.playerService.addCounter();
+            this.setGuessService(Number(n), this.getCounter() - 1, this.getDistance());
             this.rateControl.reset();
         }
         else {
@@ -55,13 +51,34 @@ export class GameComponent implements OnInit {
         return this.playerService.isPerfect();
     }
 
+    getCounter(): number {
+        return this.playerService.counter;
+    }
+
+    getDistance(): number {
+        return this.playerService.distance;
+    }
+
     resetGame(): void {
         this.playerService.clear();
+        this.playerService.changePlayerOne();
+        this.playerService.changeCounterZero();
+        this.playerService.changeDistanceDefault();
         this.guessService.clear();
         this.guessService.initialGuessServices();
-        this.playerService.changePlayerOne();
-        this.counter = 0;
-        this.distance = -1;
+        this.guessService.changeDeviationZero();
+    }
+
+    getDeviation(): number {
+        return this.guessService.deviation;
+    }
+
+    getSentencePlayerOne(): string {
+        return this.playerService.generateSentencePlayerOne();
+    }
+
+    getSentencePlayerTwo(): string {
+        return this.playerService.generateSentencePlayerTwo();
     }
 
     setGuessService(guessNumber: number, counter: number, distance: number): void {

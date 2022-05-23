@@ -6,6 +6,10 @@ import { Player } from './player';
 export class PlayerService {
     players: Player[] = [];
     isPlayerOne: boolean = true;
+    counter: number = 0;
+    distance: number = -1;
+    minimumNumber = 1;
+    maximumNumber = 100;
 
     add(id: number, n: number): void {
         let player: Player = { id: id, guessNumber: n };
@@ -24,6 +28,10 @@ export class PlayerService {
         this.players[1].guessNumber = n;
     }
 
+    changeCounterZero(): void {
+        this.counter = 0;
+    }
+
     changePlayerOne(): void {
         if(this.isPlayerOne) {
             console.log("isPlayerOne is false and this is not supposed to call")
@@ -40,18 +48,34 @@ export class PlayerService {
         this.isPlayerOne = false;
     }
 
-    getDistance(): number {
+    setDistance(): void {
         const playerOneNumber: number = this.getPlayerOneNumber();
-        const playerTwoNumber: number = this.getPlayerTwoNumber()
-        return Math.abs(playerOneNumber - playerTwoNumber)
+        const playerTwoNumber: number = this.getPlayerTwoNumber();
+        this.distance = Math.abs(playerOneNumber - playerTwoNumber);
+    }
+
+    changeDistanceDefault(): void {
+        this.distance = -1;
     }
 
     isPerfect(): boolean {
-        return this.getDistance() === 0;
+        return this.distance === 0;
+    }
+
+    addCounter(): void {
+        this.counter++;
     }
 
     clear(): void {
         this.players = [];
+    }
+
+    generateSentencePlayerOne(): string {
+        return `Player 1: enter a value between ${this.minimumNumber} and ${this.maximumNumber} to be guessed`;
+    }
+
+    generateSentencePlayerTwo(): string {
+        return `Player 2: enter a value between ${this.minimumNumber} and ${this.maximumNumber} to be guessed`;
     }
 
     constructor() {}

@@ -69,6 +69,10 @@ export class GuessService {
         this.deviation += distance;
     }
 
+    changeDeviationZero(): void {
+        this.deviation = 0;
+    }
+
     clear(): void {
         this.guesses = [];
     }

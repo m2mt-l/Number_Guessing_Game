@@ -1,7 +1,7 @@
 <div *ngIf="isPlayerOne();then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
     <div class="sentence">
-        <h2>{{sentencePlayerOne}}</h2>
+        <h2>{{getSentencePlayerOne()}}</h2>
     </div>
     <div class="container-playerOne">
         <div class="form">
@@ -25,10 +25,10 @@
 </ng-template>
 
 <ng-template #elseBlock>
-    <div *ngIf="distance===0; then gameFinish else playerTwoTurn"></div>
+    <div *ngIf="isPerfect(); then gameFinish else playerTwoTurn"></div>
     <ng-template #gameFinish>
         <div class="sentence">
-            <h2>Player 2 guessed correctly in {{counter}} attempts! sum of deviation: {{guessService.deviation}}</h2>
+            <h2>Player 2 guessed correctly in {{getCounter()}} attempts! sum of deviation: {{getDeviation()}}</h2>
         </div>
         <div class="reset-box">
             <div class="reset-button">
@@ -37,10 +37,10 @@
         </div>
     </ng-template>
     <ng-template #playerTwoTurn>
-        <div *ngIf="counter===5; then gameOver else continue"></div>
+        <div *ngIf="getCounter()===5; then gameOver else continue"></div>
         <ng-template #gameOver>
             <div class="sentence">
-                <h2>Player 2 run out of guesses! sum of deviation: {{guessService.deviation}}</h2>
+                <h2>Player 2 run out of guesses! sum of deviation: {{getDeviation()}}</h2>
             </div>
             <div class="reset-box">
                 <div class="reset-button">
@@ -50,7 +50,7 @@
         </ng-template>
         <ng-template #continue>
             <div class="sentence">
-                <h2>{{sentencePlayerTwo}}</h2>
+                <h2>{{getSentencePlayerTwo()}}</h2>
             </div>
             <div class="container-playerTwo">
                 <div class="form">
