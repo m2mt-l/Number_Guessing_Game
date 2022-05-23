@@ -37,7 +37,7 @@
         </div>
     </ng-template>
     <ng-template #playerTwoTurn>
-        <div *ngIf="getCounter()===5; then gameOver else continue"></div>
+        <div *ngIf="isGameOver(); then gameOver else continue"></div>
         <ng-template #gameOver>
             <div class="sentence">
                 <h2>Player 2 run out of guesses! sum of deviation: {{getDeviation()}}</h2>
@@ -49,9 +49,17 @@
             </div>
         </ng-template>
         <ng-template #continue>
-            <div class="sentence">
-                <h2>{{getSentencePlayerTwo()}}</h2>
-            </div>
+            <div *ngIf="isPlayerTwoFirstGuess();then playerTwoFirst else incorrect"></div>
+                <ng-template #playerTwoFirst>
+                    <div class="sentence">
+                        <h2>{{getSentencePlayerTwo()}}</h2>
+                    </div>
+                </ng-template>
+                <ng-template #incorrect>
+                    <div class="sentence">
+                        <h2>Incorrect. Player 2 have {{leftGuesses()}} left. Enter a value between 1 - 100.</h2>
+                    </div>        
+                </ng-template>
             <div class="container-playerTwo">
                 <div class="form">
                     <mat-form-field hintLabel="Between 1 and 100" appearance="fill">

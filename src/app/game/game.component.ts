@@ -15,12 +15,11 @@ export class GameComponent implements OnInit {
     ngOnInit(): void {}
 
     onSelect(n: string): void {
-        const isPlayerOne: boolean = this.playerService.isPlayerOne;
-        if (isPlayerOne) {
+        if (this.isPlayerOne()) {
             this.playerService.changePlayerTwo();
             this.playerService.add(1, Number(n));
             this.rateControl.reset();
-        } else if (this.playerService.players.length < 2) {
+        } else if (this.isPlayerTwoFirstGuess()) {
             this.playerService.add(2, Number(n));
             this.playerService.setDistance();
             this.playerService.addCounter();
@@ -81,10 +80,24 @@ export class GameComponent implements OnInit {
         return this.playerService.generateSentencePlayerTwo();
     }
 
+    isPlayerTwoFirstGuess(): boolean {
+        return !this.isPlayerOne() && this.playerService.players.length < 2;
+    }
+
     setGuessService(guessNumber: number, counter: number, distance: number): void {
         this.guessService.setGuessNumber(guessNumber, counter);
         this.guessService.setDistanceRange(distance, counter);
         this.guessService.setImgUrl(distance, counter);
         this.guessService.addDeviation(distance);
+    }
+
+    isGameOver(): boolean {
+        const guessLimit: number = this.guessService.guessLimit
+        return this.getCounter() === guessLimit;
+    }
+
+    leftGuesses(): number {
+        const guessLimit: number = this.guessService.guessLimit
+        return guessLimit - this.getCounter();
     }
 }
