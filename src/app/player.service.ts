@@ -5,26 +5,77 @@ import { Player } from './player';
 })
 export class PlayerService {
     players: Player[] = [];
+    isPlayerOne: boolean = true;
+    counter: number = 0;
+    distance: number = -1;
+    minimumNumber = 1;
+    maximumNumber = 100;
 
     add(id: number, n: number): void {
-        let player: Player = { id: id, guessingNumber: n };
+        let player: Player = { id: id, guessNumber: n };
         this.players.push(player);
     }
 
     getPlayerOneNumber(): number {
-        return this.players[0].guessingNumber;
+        return this.players[0].guessNumber;
     }
 
     getPlayerTwoNumber(): number {
-        return this.players[1].guessingNumber;
+        return this.players[1].guessNumber;
     }
 
     setPlayerTwoNumber(n: number): void {
-        this.players[1].guessingNumber = n;
+        this.players[1].guessNumber = n;
+    }
+
+    changeCounterZero(): void {
+        this.counter = 0;
+    }
+
+    changePlayerOne(): void {
+        if(this.isPlayerOne) {
+            console.log("isPlayerOne is false and this is not supposed to call")
+            return;
+        }
+        this.isPlayerOne = true;
+    }
+
+    changePlayerTwo(): void {
+        if(!this.isPlayerOne) {
+            console.log("isPlayerOne is true and this is not supposed to call")
+            return;
+        }
+        this.isPlayerOne = false;
+    }
+
+    setDistance(): void {
+        const playerOneNumber: number = this.getPlayerOneNumber();
+        const playerTwoNumber: number = this.getPlayerTwoNumber();
+        this.distance = Math.abs(playerOneNumber - playerTwoNumber);
+    }
+
+    changeDistanceDefault(): void {
+        this.distance = -1;
+    }
+
+    isPerfect(): boolean {
+        return this.distance === 0;
+    }
+
+    addCounter(): void {
+        this.counter++;
     }
 
     clear(): void {
         this.players = [];
+    }
+
+    generateSentencePlayerOne(): string {
+        return `Player 1: enter a value between ${this.minimumNumber} and ${this.maximumNumber} to be guessed`;
+    }
+
+    generateSentencePlayerTwo(): string {
+        return `Player 2: enter a value between ${this.minimumNumber} and ${this.maximumNumber} to be guessed`;
     }
 
     constructor() {}
