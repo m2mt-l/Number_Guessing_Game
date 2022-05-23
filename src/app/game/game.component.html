@@ -1,4 +1,4 @@
-<div *ngIf="isPlayerOne;then thenBlock else elseBlock"></div>
+<div *ngIf="isPlayerOne();then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
     <div class="sentence">
         <h2>{{sentencePlayerOne}}</h2>

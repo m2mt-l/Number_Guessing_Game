@@ -6,7 +6,7 @@ import { Player } from './player';
 export class PlayerService {
     players: Player[] = [];
     isPlayerOne: boolean = true;
-    
+
     add(id: number, n: number): void {
         let player: Player = { id: id, guessNumber: n };
         this.players.push(player);
@@ -22,6 +22,22 @@ export class PlayerService {
 
     setPlayerTwoNumber(n: number): void {
         this.players[1].guessNumber = n;
+    }
+
+    changePlayerOne(): void {
+        if(this.isPlayerOne) {
+            console.log("isPlayerOne is false and this is not supposed to call")
+            return;
+        }
+        this.isPlayerOne = true;
+    }
+
+    changePlayerTwo(): void {
+        if(!this.isPlayerOne) {
+            console.log("isPlayerOne is true and this is not supposed to call")
+            return;
+        }
+        this.isPlayerOne = false;
     }
 
     clear(): void {

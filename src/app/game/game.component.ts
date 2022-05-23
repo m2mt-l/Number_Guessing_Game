@@ -12,7 +12,6 @@ export class GameComponent implements OnInit {
 
     sentencePlayerOne: string = 'Player 1: enter a value between 1 and 100 to be guessed';
     sentencePlayerTwo: string = 'Player 2: enter a value between 1 and 100 to be guessed';
-    isPlayerOne: boolean = true;
     counter: number = 0;
     rateControl: FormControl = new FormControl('', [Validators.min(1), Validators.max(100)]);
     distance?: number;
@@ -20,8 +19,9 @@ export class GameComponent implements OnInit {
     ngOnInit(): void {}
 
     onSelect(n: string): void {
-        if (this.isPlayerOne) {
-            this.isPlayerOne = false;
+        const isPlayerOne: boolean = this.playerService.isPlayerOne;
+        if (isPlayerOne) {
+            this.playerService.changePlayerTwo();
             this.playerService.add(1, Number(n));
             this.rateControl.reset();
         } else if (this.playerService.players.length < 2) {
@@ -53,11 +53,15 @@ export class GameComponent implements OnInit {
         return changedN > 0 && changedN <= 100;
     }
 
+    isPlayerOne(): boolean {
+        return this.playerService.isPlayerOne;
+    }
+
     resetGame(): void {
         this.playerService.clear();
         this.guessService.clear();
         this.guessService.initialGuessServices();
-        this.isPlayerOne = true;
+        this.playerService.changePlayerOne();
         this.counter = 0;
         this.distance = -1;
     }
