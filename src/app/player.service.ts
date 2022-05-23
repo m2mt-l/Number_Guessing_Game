@@ -33,16 +33,16 @@ export class PlayerService {
     }
 
     changePlayerOne(): void {
-        if(this.isPlayerOne) {
-            console.log("isPlayerOne is false and this is not supposed to call")
+        if (this.isPlayerOne) {
+            console.log('isPlayerOne is false and this is not supposed to call');
             return;
         }
         this.isPlayerOne = true;
     }
 
     changePlayerTwo(): void {
-        if(!this.isPlayerOne) {
-            console.log("isPlayerOne is true and this is not supposed to call")
+        if (!this.isPlayerOne) {
+            console.log('isPlayerOne is true and this is not supposed to call');
             return;
         }
         this.isPlayerOne = false;

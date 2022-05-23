@@ -31,8 +31,7 @@ export class GameComponent implements OnInit {
             this.playerService.addCounter();
             this.setGuessService(Number(n), this.getCounter() - 1, this.getDistance());
             this.rateControl.reset();
-        }
-        else {
+        } else {
             this.rateControl.reset();
         }
     }
@@ -92,12 +91,12 @@ export class GameComponent implements OnInit {
     }
 
     isGameOver(): boolean {
-        const guessLimit: number = this.guessService.guessLimit
+        const guessLimit: number = this.guessService.guessLimit;
         return this.getCounter() === guessLimit;
     }
 
     leftGuesses(): number {
-        const guessLimit: number = this.guessService.guessLimit
+        const guessLimit: number = this.guessService.guessLimit;
         return guessLimit - this.getCounter();
     }
 }
