@@ -28,3 +28,9 @@
     align-items: center;
 }
 
+@media screen and (max-width: 480px) {
+    .sentence {
+        font-size: 13px;
+        text-align: center;
+    }
+}
