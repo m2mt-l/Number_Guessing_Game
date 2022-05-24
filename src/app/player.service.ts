@@ -10,8 +10,8 @@ export class PlayerService {
     distance: number = -1;
     minimumNumber: number = 1;
     maximumNumber: number = 100;
-    playerOneName: string = "Player 1";
-    playerTwoName: string = "Player 2";
+    playerOneName: string = 'Player 1';
+    playerTwoName: string = 'Player 2';
 
     add(id: number, n: number): void {
         let player: Player = { id: id, guessNumber: n };
