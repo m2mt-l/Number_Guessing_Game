@@ -1,9 +1,9 @@
-export interface Config {
+interface Config {
     minimumNumber: number;
     maximumNumber: number;
 }
 
-const defaultValue: Config = {
+export const defaultValue: Config = {
     minimumNumber: 1,
     maximumNumber: 100,
 };

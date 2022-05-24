@@ -1,7 +1,36 @@
-.container {
+.container-playerOne {
+    height: 100px;
     color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.enter-button {
-    margin-top: 1rem;
+.container-playerTwo {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    margin-right: 1rem;
+}
+
+.sentence {
+    text-align: center;
+}
+
+.reset-box {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+    .sentence {
+        font-size: 13px;
+        text-align: center;
+    }
 }
