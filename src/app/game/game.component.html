@@ -5,9 +5,9 @@
         <div class="form">
         <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
             <mat-label>Enter some input</mat-label>
-            <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" (keyup.enter)="onSelect(input.value)" required>
+            <input matInput type="number" min=getMinimumNumber() max=getMaximumNumber() #input placeholder="Ex. 100" [formControl]="rateControl" required>
             <mat-hint align="end"></mat-hint>
-            <mat-error *ngIf="rateControl.invalid">Between 1 and 100</mat-error>
+            <mat-error *ngIf="rateControl.invalid">Between {{getMinimumNumber()}} and {{getMaximumNumber()}}</mat-error>
         </mat-form-field>
         </div>
         <div class="enter-button">
@@ -25,7 +25,7 @@
 <ng-template #elseBlock>
     <div *ngIf="isPerfect(); then gameFinish else playerTwoTurn"></div>
     <ng-template #gameFinish>
-        <h2 class="sentence">Player 2 guessed correctly in {{getCounter()}} attempts! sum of deviation: {{getDeviation()}}</h2>
+        <h2 class="sentence">{{getPlayerTwoName()}} guessed correctly in {{getCounter()}} attempts! sum of deviation: {{getDeviation()}}</h2>
         <div class="reset-box">
             <div class="reset-button">
                 <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
@@ -35,7 +35,7 @@
     <ng-template #playerTwoTurn>
         <div *ngIf="isGameOver(); then gameOver else continue"></div>
         <ng-template #gameOver>
-            <h2 class="sentence">Player 2 run out of guesses! sum of deviation: {{getDeviation()}}</h2>
+            <h2 class="sentence">{{getPlayerTwoName()}} run out of guesses! sum of deviation: {{getDeviation()}}</h2>
             <div class="reset-box">
                 <div class="reset-button">
                     <button mat-raised-button color="primary" (click)="resetGame()">Reset Game</button>
@@ -48,15 +48,15 @@
                     <h2 class="sentence">{{getSentencePlayerTwo()}}</h2>
                 </ng-template>
                 <ng-template #incorrect>
-                    <h2 class="sentence">Incorrect. Player 2 have {{leftGuesses()}} left. Enter a value between 1 - 100.</h2>
+                    <h2 class="sentence">Incorrect. {{getPlayerTwoName()}} have {{leftGuesses()}} left. Enter a value between {{getMinimumNumber()}} - {{getMaximumNumber()}}.</h2>
                 </ng-template>
             <div class="container-playerTwo">
                 <div class="form">
-                    <mat-form-field hintLabel="Between 1 and 100" appearance="fill">
+                    <mat-form-field hintLabel="Between {{getMinimumNumber()}} and {{getMaximumNumber()}}" appearance="fill">
                         <mat-label>Enter some input</mat-label>
-                        <input matInput type="number" min="1" max="100" #input maxlength="3" placeholder="Ex. 100" [formControl]="rateControl" (keyup.enter)="onSelect(input.value)" required>
+                        <input matInput type="number" min=etMinimumNumber() max=getMaximumNumber() #input placeholder="Ex. 100" [formControl]="rateControl" required>
                         <mat-hint align="end"></mat-hint>
-                        <mat-error *ngIf="rateControl.invalid">Between 1 and 100</mat-error>
+                        <mat-error *ngIf="rateControl.invalid">Between {{getMinimumNumber()}} and {{getMaximumNumber()}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="enter-button" >
