@@ -8,8 +8,10 @@ export class PlayerService {
     isPlayerOne: boolean = true;
     counter: number = 0;
     distance: number = -1;
-    minimumNumber = 1;
-    maximumNumber = 100;
+    minimumNumber: number = 1;
+    maximumNumber: number = 100;
+    playerOneName: string = 'Player 1';
+    playerTwoName: string = 'Player 2';
 
     add(id: number, n: number): void {
         let player: Player = { id: id, guessNumber: n };
@@ -71,11 +73,11 @@ export class PlayerService {
     }
 
     generateSentencePlayerOne(): string {
-        return `Player 1: enter a value between ${this.minimumNumber} and ${this.maximumNumber} to be guessed`;
+        return `${this.playerOneName}: enter a value between ${this.minimumNumber} and ${this.maximumNumber} to be guessed`;
     }
 
     generateSentencePlayerTwo(): string {
-        return `Player 2: enter a value between ${this.minimumNumber} and ${this.maximumNumber} to be guessed`;
+        return `${this.playerTwoName}: enter a value between ${this.minimumNumber} and ${this.maximumNumber} to be guessed`;
     }
 
     constructor() {}

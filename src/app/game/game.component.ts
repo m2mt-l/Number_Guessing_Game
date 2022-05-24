@@ -79,6 +79,22 @@ export class GameComponent implements OnInit {
         return this.playerService.generateSentencePlayerTwo();
     }
 
+    getPlayerOneName(): string {
+        return this.playerService.playerOneName;
+    }
+
+    getPlayerTwoName(): string {
+        return this.playerService.playerTwoName;
+    }
+
+    getMinimumNumber(): string {
+        return String(this.playerService.minimumNumber);
+    }
+
+    getMaximumNumber(): string {
+        return String(this.playerService.maximumNumber);
+    }
+
     isPlayerTwoFirstGuess(): boolean {
         return !this.isPlayerOne() && this.playerService.players.length < 2;
     }
