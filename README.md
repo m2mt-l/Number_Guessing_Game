@@ -1,6 +1,11 @@
-# NumberGussing
+# Number Guessing Game
+This project is for Recursion Angular project and was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
+## URL
+https://m2mt-l.github.io/Number_Guessing_Game/
+
+## Description
+Player 1 input the number from 1 to 100, which is transparent, then Player 2 guess the number player 1 input within 5 times.
 
 ## Development server
 
